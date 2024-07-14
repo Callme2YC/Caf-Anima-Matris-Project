@@ -323,7 +323,55 @@ print(f"Best XGBoost R2: {best_xgb_r2}")
 ```
 It is found that the optimal Hyperparameters are {'colsample_bytree': 0.8, 'learning_rate': 0.05, 'max_depth': 3, 'n_estimators': 200, 'subsample': 0.8}
 
-### 14. Fit the Model and Save it
+### 14. Cross Validation
+
+Cross validation was made on the tuned model, ensuring that the final model is valid for using.
+
+```python
+
+# Initialize the model with the best hyperparameters
+best_xgb_model = XGBRegressor(
+    colsample_bytree=0.8,
+    learning_rate=0.05,
+    max_depth=3,
+    n_estimators=200,
+    subsample=0.8,
+    random_state=42
+)
+
+# Perform cross-validation
+cv_scores = cross_val_score(best_xgb_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error')
+
+# Convert negative MSE to positive
+cv_mse_scores = -cv_scores
+
+# Calculate the mean and standard deviation of the MSE scores
+mean_mse = np.mean(cv_mse_scores)
+std_mse = np.std(cv_mse_scores)
+
+# Calculate R^2 scores using cross-validation
+cv_r2_scores = cross_val_score(best_xgb_model, X_train, y_train, cv=5, scoring='r2')
+
+# Calculate the mean and standard deviation of the R^2 scores
+mean_r2 = np.mean(cv_r2_scores)
+std_r2 = np.std(cv_r2_scores)
+
+print(f"Cross-Validated MSE: {mean_mse} ± {std_mse}")
+print(f"Cross-Validated R2: {mean_r2} ± {std_r2}")
+```
+### Observations:
+
+Results: 
+- Cross-Validated MSE: 0.37215455805803666 ± 0.005777824311556927
+- Cross-Validated R2: 0.8424929857254029 ± 0.008072784972392858
+
+- Mean Squared Error (MSE): The average MSE across the cross-validation folds is 0.37, with a standard deviation of 0.005. This low MSE suggests that the model makes accurate predictions with minimal error. The small standard deviation indicates consistency in the model's performance across different data splits.
+
+- R² Score: The average R² score is 0.842, with a standard deviation of 0.008. This high R² score means that the model explains 84.2% of the variance in the target variable, indicating a very good fit. The low standard deviation further suggests that the model's predictive power is stable across different subsets of the data.
+
+Overall, these results demonstrate that the XGBoost model is both accurate and consistent in predicting the target variable, making it a reliable choice for this dataset.
+
+### 15. Fit the Model and Save it
 
 Fitting the best hyperparameters to the model and save it for future predictions.
 
@@ -354,7 +402,7 @@ joblib.dump(xgb_model, 'xgb_model.pkl')
 
 ## Usage
 
-### 15. Predicting SCA Scores with New Data Using a Trained Model
+### 16. Predicting SCA Scores with New Data Using a Trained Model
 In this case, we created a new data frame that include three data points to make predictions on SCA score.
 (Please note that these data points are randomly generatd for showcasing the model prediction ability.)
 
@@ -407,6 +455,95 @@ for index, row in new_data_df.iterrows():
     print(f"Predicted SCA Score: {row['Predicted SCA Score']}\n")
 ```
 
+### Predicted SCA Scores for Data Points
+
+#### Data Point 1:
+- **Input Variables:**
+  - Average Temp: 24.7
+  - Average PH: 4.794
+  - Average Brix: 15.7
+  - Average Humidity: 77
+  - Average Drying Temp: 22.4
+  - Average Drying Humidity: 76.591
+  - Fermentation Duration (hours): 111
+  - Drying Fermentation Duration (hours): 114
+  - Sunny: 0
+  - Cloudy: 1
+  - Rainy: 1
+  - Partly Cloudy: 0
+  - Overcast: 0
+  - Light Rain: 2
+  - Heavy Rain: 0
+  - Coffee Variety_Special: True
+  - Type of Water Used_Spring Water: True
+  - Type of Water Used_Well Water: False
+  - Additives for fermentation_Molasses: False
+  - Additives for fermentation_None: True
+  - Additives for fermentation_Sugar: False
+  - Additives for fermentation_Yeast: False
+
+- **Predicted SCA Score:** 86.1961
+
+---
+
+#### Data Point 2:
+- **Input Variables:**
+  - Average Temp: 21.3
+  - Average PH: 4.639
+  - Average Brix: 17.4
+  - Average Humidity: 69
+  - Average Drying Temp: 22.4
+  - Average Drying Humidity: 71.111
+  - Fermentation Duration (hours): 85
+  - Drying Fermentation Duration (hours): 100
+  - Sunny: 0
+  - Cloudy: 2
+  - Rainy: 0
+  - Partly Cloudy: 1
+  - Overcast: 0
+  - Light Rain: 1
+  - Heavy Rain: 1
+  - Coffee Variety_Special: True
+  - Type of Water Used_Spring Water: True
+  - Type of Water Used_Well Water: False
+  - Additives for fermentation_Molasses: False
+  - Additives for fermentation_None: True
+  - Additives for fermentation_Sugar: False
+  - Additives for fermentation_Yeast: False
+
+- **Predicted SCA Score:** 83.7812
+
+---
+
+#### Data Point 3:
+- **Input Variables:**
+  - Average Temp: 26.7
+  - Average PH: 4.32
+  - Average Brix: 19.7
+  - Average Humidity: 74
+  - Average Drying Temp: 20.9
+  - Average Drying Humidity: 73.626
+  - Fermentation Duration (hours): 98
+  - Drying Fermentation Duration (hours): 90
+  - Sunny: 1
+  - Cloudy: 2
+  - Rainy: 0
+  - Partly Cloudy: 0
+  - Overcast: 0
+  - Light Rain: 1
+  - Heavy Rain: 0
+  - Coffee Variety_Special: False
+  - Type of Water Used_Spring Water: True
+  - Type of Water Used_Well Water: False
+  - Additives for fermentation_Molasses: False
+  - Additives for fermentation_None: False
+  - Additives for fermentation_Sugar: False
+  - Additives for fermentation_Yeast: False
+
+- **Predicted SCA Score:** 85.1402
+
+## Notes:
+Based on the model the team has trained and saved, we've developed a simple and user-friendly chatbot for clients to deploy, ensuring sustainability and ease of use. For more details, please refer to the video in the folder demonstrates how to use the chatbot effectively
 
 
 
