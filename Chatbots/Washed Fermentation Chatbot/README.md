@@ -32,7 +32,7 @@ pip install pandas numpy matplotlib seaborn scikit-learn xgboost
 ```
 
 ### 2. Loading the Model
-Make sure the trained model is saved before running the chatbot. The model should be saved as **xgb_washed_model.json**.
+Make sure the trained model is saved before running the chatbot. The model should be saved as **gb_washed_model.pkl**.
 
 ## Using the Chatbot
 The chatbot interacts with users to input relevant data and predict the SCA score based on the trained model.
@@ -42,12 +42,10 @@ The chatbot script should include the following code:
 
 ```python
 import pandas as pd
-import xgboost as xgb
+import joblib
 
 # Load the saved model
-# Initialize the XGBRegressor instance
-xgb_honey_model = xgb.XGBRegressor()
-xgb_honey_model.load_model('xgb_washed_model.json')
+gb_washed_model = joblib.load('gb_washed_model.pkl')
 
 def get_user_input():
     """Prompt the user for input data"""
@@ -80,7 +78,7 @@ def get_user_input():
 def predict_sca_score(input_data):
     """Predict SCA score based on user input"""
     input_df = pd.DataFrame([input_data])
-    prediction = xgb_washed_model.predict(input_df)
+    prediction = gb_washed_model.predict(input_df)
     return prediction[0]
 
 def chatbot():
