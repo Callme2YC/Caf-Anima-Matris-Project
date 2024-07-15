@@ -297,6 +297,19 @@ results = pd.DataFrame({
 
 print(results)
 ```
+|              Model               |     MSE     |     R²     |
+|:--------------------------------:|:-----------:|:----------:|
+|       Linear Regression          |  1.620849   |  0.735029  |
+|       Ridge Regression           |  1.621028   |  0.735000  |
+|       Lasso Regression           |  4.736795   |  0.225645  |
+|      Polynomial Regression       |  1.619201   |  0.735298  |
+|          Decision Tree           |  3.300797   |  0.460397  |
+|          Random Forest           |  1.453125   |  0.762448  |
+|      Gradient Boosting           |  1.402577   |  0.770711  |
+|              XGBoost             |  1.595555   |  0.739164  |
+|                  SVR             |  1.658731   |  0.728836  |
+
+
 #### The Best Performed Model - Gradient Boosting
 
 The Gradient Boosting model performs the best among the listed models, with the lowest Mean Squared Error (MSE) and the highest R² score. This indicates that Gradient Boosting is highly effective at capturing the underlying patterns in the data, resulting in accurate predictions with relatively minimal error. The high R² score demonstrates that the model explains a significant portion of the variance in the target variable.
@@ -305,7 +318,7 @@ The Gradient Boosting model performs the best among the listed models, with the 
 
 ### 13. Model Tuning 
 
-Using Hyperparameter grid search to tune the XGBoost model and then find the optimal hyperparameters.
+Using Hyperparameter grid search to tune the Gradient Boosting model and then find the optimal hyperparameters.
 
 ```python
 # Function to evaluate the model
@@ -322,14 +335,15 @@ param_grid = {
     'learning_rate': [0.01, 0.05, 0.1],
     'max_depth': [3, 5, 7],
     'subsample': [0.7, 0.8, 0.9],
-    'colsample_bytree': [0.7, 0.8, 0.9]
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
 }
 
 # Initialize the model
-xgb_model = XGBRegressor(random_state=42)
+gb_model = GradientBoostingRegressor(random_state=42)
 
 # Initialize GridSearchCV
-grid_search = GridSearchCV(estimator=xgb_model, param_grid=param_grid, cv=3, scoring='neg_mean_squared_error', verbose=2, n_jobs=-1)
+grid_search = GridSearchCV(estimator=gb_model, param_grid=param_grid, cv=3, scoring='neg_mean_squared_error', verbose=2, n_jobs=-1)
 
 # Fit the model
 grid_search.fit(X_train, y_train)
@@ -338,16 +352,16 @@ grid_search.fit(X_train, y_train)
 best_params = grid_search.best_params_
 
 # Initialize the model with the best parameters
-best_xgb_model = XGBRegressor(**best_params, random_state=42)
+best_gb_model = GradientBoostingRegressor(**best_params, random_state=42)
 
 # Evaluate the model
-best_xgb_mse, best_xgb_r2 = evaluate_model(best_xgb_model, X_train, X_test, y_train, y_test)
+best_gb_mse, best_gb_r2 = evaluate_model(best_gb_model, X_train, X_test, y_train, y_test)
 
 print(f"Best Hyperparameters: {best_params}")
-print(f"Best XGBoost MSE: {best_xgb_mse}")
-print(f"Best XGBoost R2: {best_xgb_r2}")
+print(f"Best Gradient Boosting MSE: {best_gb_mse}")
+print(f"Best Gradient Boosting R2: {best_gb_r2}")
 ```
-It is found that the optimal Hyperparameters are{'colsample_bytree': 0.9, 'learning_rate': 0.05, 'max_depth': 3, 'n_estimators': 200, 'subsample': 0.9}
+It is found that the optimal Hyperparameters are {'learning_rate': 0.05, 'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 200, 'subsample': 0.7}
 
 ### 14. Cross Validation
 
@@ -388,21 +402,23 @@ print(f"Cross-Validated R2: {mean_r2} ± {std_r2}")
 ### Observations:
 
 **Results:**
-- Cross-Validated MSE: 1.6761144868306643 ± 0.12283900424389622
-- Cross-Validated R2: 0.7152223825454712 ± 0.025056403810252238
+- Cross-Validated MSE: 1.675422723822886 ± 0.11731219243846999
+- Cross-Validated R2: 0.7154326592503628 ± 0.022838231751375723
 
-- **Mean Squared Error (MSE):** The average MSE across the cross-validation folds is 1.6761, with a standard deviation of 0.1228. This low MSE suggests that the model makes accurate predictions with minimal error. The small standard deviation indicates consistency in the model's performance across different data splits.
+- **Mean Squared Error (MSE):** The average MSE across the cross-validation folds is 1.6754, with a standard deviation of 0.1173. This low MSE suggests that the model makes accurate predictions with minimal error. The small standard deviation indicates consistency in the model's performance across different data splits.
   
-- **R² Score:** The average R² score is 0.7152, with a standard deviation of 0.0251. This high R² score means that the model explains 71.52% of the variance in the target variable, indicating a very good fit. The low standard deviation further suggests that the model's predictive power is stable across different subsets of the data.
+- **R² Score:** The average R² score is 0.7154, with a standard deviation of 0.0228. This high R² score means that the model explains 71.54% of the variance in the target variable, indicating a very good fit. The low standard deviation further suggests that the model's predictive power is stable across different subsets of the data.
 
 Overall, these results demonstrate that the XGBoost model is both accurate and consistent in predicting the target variable, making it a reliable choice for this dataset.
 
 
 ### 15. Fit the Model and Save it
 
-Fitting the best hyperparameters to the model and save it as the json format **('xgb_honey_model.json')** for future predictions.
+Fitting the best hyperparameters to the model and save it as the json format **('gb_honey_model.pkl')** for future predictions.
 
 ```python
+import joblib
+
 # Define features and target
 X = df_honey.drop(columns=['SCA Score'])
 y = df_honey['SCA Score'] 
@@ -411,20 +427,22 @@ y = df_honey['SCA Score']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Initialize the XGBoost model with the best hyperparameters
-xgb_honey_model = XGBRegressor(
-    colsample_bytree=0.9,
+gb_honey_model = GradientBoostingRegressor(
+    n_estimators=200,
     learning_rate=0.05,
     max_depth=3,
-    n_estimators=200,
-    subsample=0.9,
+    subsample=0.7,
+    min_samples_split=2,
+    min_samples_leaf=1,
     random_state=42
 )
 
 # Train the XGBoost model
-xgb_honey_model.fit(X_train, y_train)
+gb_honey_model.fit(X_train, y_train)
 
-# Save the fitted model in JSON format
-xgb_honey_model.save_model('xgb_honey_model.json')
+# Save the fitted model using joblib
+joblib.dump(gb_honey_model, 'gb_honey_model.pkl')
+
 ```
 
 ## Usage
@@ -464,15 +482,13 @@ new_data = {
 new_data_df = pd.DataFrame(new_data)
 
 # Load the saved model
-# Initialize the XGBRegressor instance
-xgb_honey_model = xgb.XGBRegressor()
-xgb_honey_model.load_model('xgb_honey_model.json')
+gb_honey_model = joblib.load('gb_honey_model.pkl')
 
 # Prepare the input data
 input_features = new_data_df  # Directly use the columns from the new data
 
 # Make predictions
-predictions = xgb_honey_model.predict(input_features)
+predictions = gb_honey_model.predict(input_features)
 
 # Add predictions to the DataFrame
 new_data_df['Predicted SCA Score'] = predictions
@@ -515,7 +531,7 @@ for index, row in new_data_df.iterrows():
   - Additives for fermentation_Yeast: False
   - Pre-fermentation for Honey_Yes: False
 
-- **Predicted SCA Score:** 87.8873
+- **Predicted SCA Score:** 88.1210
 
 ---
 
@@ -545,7 +561,7 @@ for index, row in new_data_df.iterrows():
   - Additives for fermentation_Yeast: False
   - Pre-fermentation for Honey_Yes: False
 
-- **Predicted SCA Score:** 84.0535
+- **Predicted SCA Score:** 84.2862
 
 ---
 
@@ -575,7 +591,7 @@ for index, row in new_data_df.iterrows():
   - Additives for fermentation_Yeast: False
   - Pre-fermentation for Honey_Yes: False
 
-- **Predicted SCA Score:** 86.2304
+- **Predicted SCA Score:** 86.2442
 
 
 ## Notes:
