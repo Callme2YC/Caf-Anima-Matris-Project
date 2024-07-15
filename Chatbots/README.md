@@ -17,6 +17,7 @@ This document provides an overview of two chatbots developed to enhance the Spec
 
 The two chatbots are designed to estimate the SCA score for coffee beans based on specific conditions during the fermentation and drying processes. The chatbots facilitate interaction with the predictive models, allowing users to input necessary data and receive accurate predictions. This guide provides a brief overview of the chatbots, highlighting their features and the reasons for developing separate chatbots for each fermentation method.
 
+## Before running the chatbot, please make sure you have followed the YouTube Video to download Anaconda, and be able to use Jupyter Notebook on you laptop. (YouTube link: https://www.youtube.com/watch?v=drbaFALFKDg).
 ---
 
 ## Washed Fermentation Chatbot
