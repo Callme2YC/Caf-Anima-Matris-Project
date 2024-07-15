@@ -424,7 +424,7 @@ Overall, these results demonstrate that the Gradient Boost model is both accurat
 
 ### 15. Fit the Model and Save it
 
-Fitting the best hyperparameters to the model and save it as the json file **('gb_washed_model.pkl')** for future predictions.
+Fitting the best hyperparameters to the model and save it as the pkl file **('gb_washed_model.pkl')** for future predictions.
 
 ```python
 import joblib
