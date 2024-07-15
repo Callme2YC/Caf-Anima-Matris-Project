@@ -63,7 +63,6 @@ You can install these libraries using `pip`. Open your terminal or command promp
 !pip install pandas numpy matplotlib seaborn scikit-learn xgboost joblib
 
 
-```python
 import sys
 assert sys.version_info >= (3, 7)
 from packaging import version
