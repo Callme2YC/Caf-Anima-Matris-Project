@@ -14,13 +14,18 @@ This document provides a brief summary of two predictive models developed to enh
 
 ## Introduction
 
-The two models aim to predict the SCA score for coffee beans undergoing washed fermentation and honey fermentation. By leveraging machine learning techniques, the models use historical data to forecast optimal conditions for fermentation and drying, improving the coffee's overall quality.
+The two models aim to predict the SCA score for coffee beans undergoing washed fermentation and honey fermentation. By leveraging machine learning techniques, the models use historical data to forecast optimal conditions for fermentation and drying, improving the coffee's overall quality. 
 
 Different fermentation methods can be impacted by different variables, which is why two separate models were developed. For honey fermentation, since the fermentation occurs in the barrel without water and air, factors such as the time the barrel is open and whether the beans have been pre-fermented are important. In contrast, for washed fermentation, the type of water used in the process can be crucial.
 
 ---
 
 ## Washed Fermentation Model
+
+### NOTE: A video code demo for Washed Fermentation Model is available under the "Predivtive Model of Washed Fermentation"
+- The purpose of this code demo is to provide a clear and detailed understanding of how to use the model to enhance the quality of coffee beans through optimized fermentation processes. (The predictive model for Honey Fermentation follows a similar process, so only one detailed code demo for model development is provided.)
+
+- The video thoroughly walks through the entire notebook, demonstrating the development and evaluation of the predictive model for coffee fermentation, including data preprocessing, exploratory data analysis, model training, hyperparameter tuning, and cross validations of the model.
 
 ### Features
 - **Predictive Modeling:** Uses machine learning to predict SCA scores based on fermentation and drying conditions.
