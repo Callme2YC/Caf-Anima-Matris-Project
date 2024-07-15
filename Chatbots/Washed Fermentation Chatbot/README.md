@@ -9,7 +9,7 @@ This document serves as a user guide for the chatbot developed to predict the Sp
 2. [Setup](#setup)
 3. [Using the Chatbot](#using-the-chatbot)
 4. [Model Features](#model-features)
-5. [Example Predictions](#example-predictions) XXXX
+
 
 ---
 
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
 ### 2. Running the Chatbot
 
-Run the script in your Python environment. The chatbot will prompt you to enter the necessary data, predict the SCA score, and ask if you want to input another set of data.
+Run the script in your Python environment. The chatbot will prompt you to enter the necessary data, predict the SCA score, and ask if you want to input another set of data (A demonstration video will be provided in the folder to showcase how to use the chatbot).
 
 ## Model Features
 
@@ -120,5 +120,4 @@ The following variables are crucial inputs that help the model predict the SCA s
 - **Type of Water Used_Spring Water, Type of Water Used_Well Water:** The type of water used in the process.
 - **Additives for fermentation_Molasses, None, Sugar, Yeast:** The additives used during fermentation.
 
-## Example Predictions
 
