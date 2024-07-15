@@ -369,18 +369,26 @@ Cross validation was made on the tuned model, ensuring that the final model is v
 
 ```python
 
+# Define features and target
+X = df_honey.drop(columns=['SCA Score'])
+y = df_honey['SCA Score'] 
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
 # Initialize the model with the best hyperparameters
-best_xgb_model = XGBRegressor(
-    colsample_bytree=0.9,
+best_gb_model = GradientBoostingRegressor(
+    n_estimators=200,
     learning_rate=0.05,
     max_depth=3,
-    n_estimators=200,
-    subsample=0.9,
+    subsample=0.7,
+    min_samples_split=2,
+    min_samples_leaf=1,
     random_state=42
 )
 
 # Perform cross-validation
-cv_scores = cross_val_score(best_xgb_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error')
+cv_scores = cross_val_score(best_gb_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error')
 
 # Convert negative MSE to positive
 cv_mse_scores = -cv_scores
@@ -390,7 +398,7 @@ mean_mse = np.mean(cv_mse_scores)
 std_mse = np.std(cv_mse_scores)
 
 # Calculate R^2 scores using cross-validation
-cv_r2_scores = cross_val_score(best_xgb_model, X_train, y_train, cv=5, scoring='r2')
+cv_r2_scores = cross_val_score(best_gb_model, X_train, y_train, cv=5, scoring='r2')
 
 # Calculate the mean and standard deviation of the R^2 scores
 mean_r2 = np.mean(cv_r2_scores)
@@ -398,6 +406,7 @@ std_r2 = np.std(cv_r2_scores)
 
 print(f"Cross-Validated MSE: {mean_mse} ± {std_mse}")
 print(f"Cross-Validated R2: {mean_r2} ± {std_r2}")
+
 ```
 ### Observations:
 
@@ -409,7 +418,7 @@ print(f"Cross-Validated R2: {mean_r2} ± {std_r2}")
   
 - **R² Score:** The average R² score is 0.7154, with a standard deviation of 0.0228. This high R² score means that the model explains 71.54% of the variance in the target variable, indicating a very good fit. The low standard deviation further suggests that the model's predictive power is stable across different subsets of the data.
 
-Overall, these results demonstrate that the XGBoost model is both accurate and consistent in predicting the target variable, making it a reliable choice for this dataset.
+Overall, these results demonstrate that the Gradient Boosting model is both accurate and consistent in predicting the target variable, making it a reliable choice for this dataset.
 
 
 ### 15. Fit the Model and Save it
@@ -426,7 +435,7 @@ y = df_honey['SCA Score']
 # Split data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Initialize the XGBoost model with the best hyperparameters
+# Initialize the Gradient Boosting model with the best hyperparameters
 gb_honey_model = GradientBoostingRegressor(
     n_estimators=200,
     learning_rate=0.05,
@@ -437,7 +446,7 @@ gb_honey_model = GradientBoostingRegressor(
     random_state=42
 )
 
-# Train the XGBoost model
+# Train the Gradient Boosting model
 gb_honey_model.fit(X_train, y_train)
 
 # Save the fitted model using joblib
