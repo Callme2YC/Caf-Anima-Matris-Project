@@ -9,7 +9,7 @@ This document serves as a user guide for the predictive model developed to enhan
 2. [Setup](#setup)
 3. [Using the Chatbot](#using-the-chatbot)
 4. [Model Features](#model-features)
-5. [Example Predictions](#example-predictions)
+5. [Example Predictions](#example-predictions) XXXX
 
 ---
 
