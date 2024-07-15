@@ -291,6 +291,19 @@ results = pd.DataFrame({
 
 print(results)
 ```
+|                Model              |     MSE     |     R²     |
+|:---------------------------------:|:-----------:|:----------:|
+|       Linear Regression           |  0.416214   |  0.800992  |
+|       Ridge Regression            |  0.416162   |  0.801017  |
+|       Lasso Regression            |  2.091845   | -0.000191  |
+|      Polynomial Regression        |  0.381721   |  0.817484  |
+|          Decision Tree            |  0.817635   |  0.609057  |
+|          Random Forest            |  0.401764   |  0.807901  |
+|      Gradient Boosting            |  0.368918   |  0.823606  |
+|              XGBoost              |  0.458179   |  0.780927  |
+|                  SVR              |  0.398287   |  0.809564  |
+
+
 #### The Best Performed Model - Gradient Boosting
 
 The Gradient Boosting model performs the best among the listed models, with the lowest Mean Squared Error (MSE) and the highest R² score. 
@@ -303,9 +316,11 @@ The Gradient Boosting model performs the best among the listed models, with the 
 
 ### 13. Model Tuning 
 
-Using Hyperparameter grid search to tune the XGBoost model and then find the optimal hyperparameters.
+Using Hyperparameter grid search to tune the Gradient Boost model and then find the optimal hyperparameters.
 
 ```python
+from sklearn.ensemble import GradientBoostingRegressor
+
 # Function to evaluate the model
 def evaluate_model(model, X_train, X_test, y_train, y_test):
     model.fit(X_train, y_train)
@@ -314,20 +329,21 @@ def evaluate_model(model, X_train, X_test, y_train, y_test):
     r2 = r2_score(y_test, y_pred)
     return mse, r2
 
-# Define the parameter grid
+# Define the parameter grid for Gradient Boosting
 param_grid = {
     'n_estimators': [100, 200, 300],
     'learning_rate': [0.01, 0.05, 0.1],
     'max_depth': [3, 5, 7],
     'subsample': [0.7, 0.8, 0.9],
-    'colsample_bytree': [0.7, 0.8, 0.9]
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
 }
 
 # Initialize the model
-xgb_model = XGBRegressor(random_state=42)
+gb_model = GradientBoostingRegressor(random_state=42)
 
 # Initialize GridSearchCV
-grid_search = GridSearchCV(estimator=xgb_model, param_grid=param_grid, cv=3, scoring='neg_mean_squared_error', verbose=2, n_jobs=-1)
+grid_search = GridSearchCV(estimator=gb_model, param_grid=param_grid, cv=3, scoring='neg_mean_squared_error', verbose=2, n_jobs=-1)
 
 # Fit the model
 grid_search.fit(X_train, y_train)
@@ -336,16 +352,17 @@ grid_search.fit(X_train, y_train)
 best_params = grid_search.best_params_
 
 # Initialize the model with the best parameters
-best_xgb_model = XGBRegressor(**best_params, random_state=42)
+best_gb_model = GradientBoostingRegressor(**best_params, random_state=42)
 
 # Evaluate the model
-best_xgb_mse, best_xgb_r2 = evaluate_model(best_xgb_model, X_train, X_test, y_train, y_test)
+best_gb_mse, best_gb_r2 = evaluate_model(best_gb_model, X_train, X_test, y_train, y_test)
 
 print(f"Best Hyperparameters: {best_params}")
-print(f"Best XGBoost MSE: {best_xgb_mse}")
-print(f"Best XGBoost R2: {best_xgb_r2}")
+print(f"Best Gradient Boosting MSE: {best_gb_mse}")
+print(f"Best Gradient Boosting R2: {best_gb_r2}")
+
 ```
-It is found that the optimal Hyperparameters are {'colsample_bytree': 0.8, 'learning_rate': 0.05, 'max_depth': 3, 'n_estimators': 200, 'subsample': 0.8}
+It is found that the optimal Hyperparameters are {'learning_rate': 0.05, 'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 200, 'subsample': 0.7}
 
 ### 14. Cross Validation
 
@@ -353,18 +370,27 @@ Cross validation was made on the tuned model, ensuring that the final model is v
 
 ```python
 
+
+# Define features and target
+X = df_washed.drop(columns=['SCA Score'])
+y = df_washed['SCA Score'] 
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
 # Initialize the model with the best hyperparameters
-best_xgb_model = XGBRegressor(
-    colsample_bytree=0.8,
+best_gb_model = GradientBoostingRegressor(
+    n_estimators=200,
     learning_rate=0.05,
     max_depth=3,
-    n_estimators=200,
-    subsample=0.8,
+    subsample=0.7,
+    min_samples_split=2,
+    min_samples_leaf=1,
     random_state=42
 )
 
 # Perform cross-validation
-cv_scores = cross_val_score(best_xgb_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error')
+cv_scores = cross_val_score(best_gb_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error')
 
 # Convert negative MSE to positive
 cv_mse_scores = -cv_scores
@@ -374,7 +400,7 @@ mean_mse = np.mean(cv_mse_scores)
 std_mse = np.std(cv_mse_scores)
 
 # Calculate R^2 scores using cross-validation
-cv_r2_scores = cross_val_score(best_xgb_model, X_train, y_train, cv=5, scoring='r2')
+cv_r2_scores = cross_val_score(best_gb_model, X_train, y_train, cv=5, scoring='r2')
 
 # Calculate the mean and standard deviation of the R^2 scores
 mean_r2 = np.mean(cv_r2_scores)
@@ -382,24 +408,26 @@ std_r2 = np.std(cv_r2_scores)
 
 print(f"Cross-Validated MSE: {mean_mse} ± {std_mse}")
 print(f"Cross-Validated R2: {mean_r2} ± {std_r2}")
+
 ```
 ### Observations:
 
 Results: 
-- Cross-Validated MSE: 0.37215455805803666 ± 0.005777824311556927
-- Cross-Validated R2: 0.8424929857254029 ± 0.008072784972392858
+- Cross-Validated MSE: 0.37992423284042576 ± 0.00773399972001093
+- Cross-Validated R2: 0.8392548657600702 ± 0.007587260380053283
 
-- Mean Squared Error (MSE): The average MSE across the cross-validation folds is 0.37, with a standard deviation of 0.005. This low MSE suggests that the model makes accurate predictions with minimal error. The small standard deviation indicates consistency in the model's performance across different data splits.
+- Mean Squared Error (MSE): The average MSE across the cross-validation folds is 0.38, with a standard deviation of 0.008. This low MSE suggests that the model makes accurate predictions with minimal error. The small standard deviation indicates consistency in the model's performance across different data splits.
 
-- R² Score: The average R² score is 0.842, with a standard deviation of 0.008. This high R² score means that the model explains 84.2% of the variance in the target variable, indicating a very good fit. The low standard deviation further suggests that the model's predictive power is stable across different subsets of the data.
+- R² Score: The average R² score is 0.839, with a standard deviation of 0.008. This high R² score means that the model explains 83.9% of the variance in the target variable, indicating a very good fit. The low standard deviation further suggests that the model's predictive power is stable across different subsets of the data.
 
-Overall, these results demonstrate that the XGBoost model is both accurate and consistent in predicting the target variable, making it a reliable choice for this dataset.
+Overall, these results demonstrate that the Gradient Boost model is both accurate and consistent in predicting the target variable, making it a reliable choice for this dataset.
 
 ### 15. Fit the Model and Save it
 
-Fitting the best hyperparameters to the model and save it as the json file **('xgb_washed_model.json')** for future predictions.
+Fitting the best hyperparameters to the model and save it as the json file **('gb_washed_model.pkl')** for future predictions.
 
 ```python
+import joblib
 
 # Define features and target
 X = df_washed.drop(columns=['SCA Score'])
@@ -408,21 +436,22 @@ y = df_washed['SCA Score']
 # Split data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Initialize the XGBoost model with the best hyperparameters
-xgb_washed_model = xgb.XGBRegressor(
-    colsample_bytree=0.8,
+# Initialize the Gradient Boosting model with the best hyperparameters
+gb_washed_model = GradientBoostingRegressor(
+    n_estimators=200,
     learning_rate=0.05,
     max_depth=3,
-    n_estimators=200,
     subsample=0.8,
+    min_samples_split=2,
+    min_samples_leaf=1,
     random_state=42
 )
 
-# Train the XGBoost model
-xgb_washed_model.fit(X_train, y_train)
+# Train the Gradient Boosting model
+gb_washed_model.fit(X_train, y_train)
 
-# Save the fitted model in JSON format
-xgb_washed_model.save_model('xgb_washed_model.json')
+# Save the fitted model using joblib
+joblib.dump(gb_washed_model, 'gb_washed_model.pkl')
 ```
 
 ## Usage
@@ -461,15 +490,13 @@ new_data = {
 new_data_df = pd.DataFrame(new_data)
 
 # Load the saved model
-# Initialize the XGBRegressor instance
-xgb_washed_model = xgb.XGBRegressor()
-xgb_washed_model.load_model('xgb_washed_model.json')
+gb_washed_model = joblib.load('gb_washed_model.pkl')
 
 # Prepare the input data
 input_features = new_data_df  # Directly use the columns from the new data
 
 # Make predictions
-predictions = xgb_washed_model.predict(input_features)
+predictions = gb_washed_model.predict(input_features)
 
 # Add predictions to the DataFrame
 new_data_df['Predicted SCA Score'] = predictions
@@ -509,7 +536,7 @@ for index, row in new_data_df.iterrows():
   - Additives for fermentation_Sugar: False
   - Additives for fermentation_Yeast: False
 
-- **Predicted SCA Score:** 86.1961
+- **Predicted SCA Score:** 86.0750
 
 ---
 
@@ -538,7 +565,7 @@ for index, row in new_data_df.iterrows():
   - Additives for fermentation_Sugar: False
   - Additives for fermentation_Yeast: False
 
-- **Predicted SCA Score:** 83.7812
+- **Predicted SCA Score:** 83.8646
 
 ---
 
@@ -567,7 +594,7 @@ for index, row in new_data_df.iterrows():
   - Additives for fermentation_Sugar: False
   - Additives for fermentation_Yeast: False
 
-- **Predicted SCA Score:** 85.1402
+- **Predicted SCA Score:** 85.1349
 
 ## Notes:
 Based on the model the team has trained and saved, There is a simple and user-friendly chatbot developed for clients to deploy, ensuring sustainability and ease of use. For more details, please refer to the video in the **"Chatbots" folder** demonstrates how to use the chatbot effectively.
