@@ -2,6 +2,12 @@
 
 This document serves as a user guide for the predictive model developed to enhance the Specialty Coffee Association (SCA) score for the washed fermentation process. This guide provides step-by-step instructions on how to use the provided Jupyter Notebook to predict the SCA score based on various input parameters related to the fermentation and drying processes. 
 
+### Difference Between Washed Fermentation and Honey Fermentation
+
+Washed fermentation and honey fermentation are two different methods of processing coffee beans. In washed fermentation, the coffee cherries are soaked in water to remove the outer fruit layer before the beans are dried. This method gives the coffee a cleaner and brighter taste.
+
+Honey fermentation (Anaerobic fermentation), on the other hand, a type of honey fermentation, happens in a sealed environment without oxygen (in this case, Cafe Anima Matris choose to seal them in the barrel), which can create unique flavors due to the special way microbes work in these conditions.
+
 ---
 
 ## Table of Contents
@@ -47,6 +53,11 @@ If you have any questions about how the fake data was generated, please refer to
 ### 1. Importing Libraries
 
 Ensure you have the necessary libraries installed. This includes standard data manipulation libraries like `pandas` and `numpy`, visualization libraries such as `matplotlib` and `seaborn`, and machine learning libraries like `scikit-learn` and `xgboost`.
+
+You can install these libraries using `pip`. Open your terminal or command prompt and run the following commands:
+
+```sh
+!pip install pandas numpy matplotlib seaborn scikit-learn xgboost joblib
 
 ```python
 import sys
@@ -100,7 +111,7 @@ df_washed['Fermentation Duration (hours)'] = (df_washed['Fermentation End'] - df
 
 df_washed['Drying Start Date/Time'] = pd.to_datetime(df_washed['Drying Start Date/Time'])
 df_washed['Drying End Date/Time'] = pd.to_datetime(df_washed['Drying End Date/Time'])
-df_washed['Drying Duration (hours)'] = (df_washed['Drying End Date/Time'] - df_washed['Drying Start Date/Time']).dt.total_seconds() / 3600
+df_washed['Drying Fermentation Duration (hours)'] = (df_washed['Drying End Date/Time'] - df_washed['Drying Start Date/Time']).dt.total_seconds() / 3600
 ```
 
 #### 5. Handling Weather Conditions
@@ -125,7 +136,19 @@ Compute and visualize the correlation matrix for numerical columns.
 ```python
 numerical_columns = ['Average Temp', 'Average PH', 'Average Brix', 'Average Humidity', 'Fermentation Duration (hours)', 'Drying Duration (hours)', 'SCA Score', "Sunny", "Cloudy", "Rainy", "Partly Cloudy", "Overcast", "Light Rain", "Heavy Rain", 'Average Drying Temp', 'Average Drying Humidity']
 
+# Calculate correlation matrix for numerical columns
 correlation_matrix = df_washed[numerical_columns].corr()
+
+# Remove "SCA Score" from the list of numerical columns
+numerical_columns_excluding_sca = [col for col in numerical_columns if col != 'SCA Score']
+
+# Calculate the correlation matrix for numerical columns excluding "SCA Score"
+correlation_matrix = df_washed[numerical_columns_excluding_sca].corr()
+
+# Display the correlation matrix
+print("Correlation Matrix:\n", correlation_matrix)
+
+# Visualize the correlation matrix using a heatmap
 plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', linewidths=0.5)
 plt.title('Correlation Matrix Heatmap')
@@ -438,7 +461,7 @@ new_data = {
 new_data_df = pd.DataFrame(new_data)
 
 # Load the saved model
-xgb_washed_model = joblib.load('xgb_model.pkl')
+xgb_washed_model = joblib.load('xgb_washed_model.pkl')
 
 # Prepare the input data
 input_features = new_data_df  # Directly use the columns from the new data
@@ -545,7 +568,7 @@ for index, row in new_data_df.iterrows():
 - **Predicted SCA Score:** 85.1402
 
 ## Notes:
-Based on the model the team has trained and saved, we've developed a simple and user-friendly chatbot for clients to deploy, ensuring sustainability and ease of use. For more details, please refer to the video in the folder demonstrates how to use the chatbot effectively
+Based on the model the team has trained and saved, There is a simple and user-friendly chatbot developed for clients to deploy, ensuring sustainability and ease of use. For more details, please refer to the video in the **"Chatbots" folder** demonstrates how to use the chatbot effectively.
 
 
 
