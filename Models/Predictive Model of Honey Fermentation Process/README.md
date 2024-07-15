@@ -400,9 +400,16 @@ Overall, these results demonstrate that the XGBoost model is both accurate and c
 
 ### 15. Fit the Model and Save it
 
-Fitting the best hyperparameters to the model and save it for future predictions.
+Fitting the best hyperparameters to the model and save it as the json format **('xgb_honey_model.json')** for future predictions.
 
 ```python
+# Define features and target
+X = df_honey.drop(columns=['SCA Score'])
+y = df_honey['SCA Score'] 
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
 # Initialize the XGBoost model with the best hyperparameters
 xgb_honey_model = XGBRegressor(
     colsample_bytree=0.9,
@@ -416,16 +423,8 @@ xgb_honey_model = XGBRegressor(
 # Train the XGBoost model
 xgb_honey_model.fit(X_train, y_train)
 
-# Save the fitted model
-joblib.dump(xgb_honey_model, 'xgb_honey_model.pkl')
-
-# Optionally, evaluate the model
-y_pred = xgb_honey_model.predict(X_test)
-mse = mean_squared_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
-
-print(f"XGBoost Model MSE: {mse}")
-print(f"XGBoost Model R2: {r2}")
+# Save the fitted model in JSON format
+xgb_honey_model.save_model('xgb_honey_model.json')
 ```
 
 ## Usage
@@ -465,7 +464,9 @@ new_data = {
 new_data_df = pd.DataFrame(new_data)
 
 # Load the saved model
-xgb_honey_model = joblib.load('xgb_honey_model.pkl')
+# Initialize the XGBRegressor instance
+xgb_honey_model = xgb.XGBRegressor()
+xgb_honey_model.load_model('xgb_honey_model.json')
 
 # Prepare the input data
 input_features = new_data_df  # Directly use the columns from the new data
