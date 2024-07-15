@@ -27,11 +27,11 @@ Ensure you have the necessary libraries installed. This includes standard data m
 You can install these libraries using `pip`. Open your terminal or command prompt and run the following commands:
 
 ```sh
-pip install pandas numpy matplotlib seaborn scikit-learn xgboost joblib
+pip install pandas numpy matplotlib seaborn scikit-learn xgboost
 ```
 
 ### 2. Loading the Model
-Make sure the trained model is saved before running the chatbot. The model should be saved as **xgb_honey_model.pkl**.
+Make sure the trained model is saved before running the chatbot. The model should be saved as **xgb_honey_model.json**.
 
 ## Using the Chatbot
 The chatbot interacts with users to input relevant data and predict the SCA score based on the trained model.
@@ -40,11 +40,13 @@ The chatbot interacts with users to input relevant data and predict the SCA scor
 The chatbot script should include the following code:
 
 ```python
-import joblib
+import xgboost as xgb
 import pandas as pd
 
 # Load the saved model
-xgb_honey_model = joblib.load('xgb_honey_model.pkl')
+# Initialize the XGBRegressor instance
+xgb_honey_model = xgb.XGBRegressor()
+xgb_honey_model.load_model('xgb_honey_model.json')
 
 def get_user_input():
     """Prompt the user for input data"""
