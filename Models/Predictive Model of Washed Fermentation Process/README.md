@@ -25,6 +25,7 @@ This notebook aims to predict the SCA score for coffee beans undergoing the wash
     
 - **Data Preprocessing:** Handles data cleaning, feature engineering, and encoding of categorical variables.
   - Ensures that the data is in the optimal format for model training and evaluation.
+    
 - **Model Evaluation:** Provides metrics to evaluate model performance.
   - Comprehensive evaluation using Mean Squared Error (MSE) and R² scores to ensure the best model is selected.
     
@@ -35,7 +36,7 @@ This notebook aims to predict the SCA score for coffee beans undergoing the wash
   - The saved model can be reused to predict scores for new data, providing a scalable solution for ongoing quality improvement.
 
 ### Data Sources
-The data used in this project is generated and stored in a CSV file named `fake_main_data.csv`, containing detailed information about the fermentation and drying processes of coffee beans. 
+The data used in this project is generated and stored in a CSV file named `fake_main_data.csv`, containing detailed information about the fermentation and drying processes of coffee beans. **Specfically, the model will only use data that related with washed fermentation process.**
 
 If you have any questions about how the fake data was generated, please refer to the Synthetic Data folder for more detailed information.
 
@@ -376,15 +377,8 @@ Overall, these results demonstrate that the XGBoost model is both accurate and c
 Fitting the best hyperparameters to the model and save it for future predictions.
 
 ```python
-# Define features and target
-X = df_washed.drop(columns=['SCA Score'])
-y = df_washed['SCA Score'] 
-
-# Split data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
 # Initialize the XGBoost model with the best hyperparameters
-xgb_model = XGBRegressor(
+xgb_washed_model = XGBRegressor(
     colsample_bytree=0.8,
     learning_rate=0.05,
     max_depth=3,
@@ -394,10 +388,18 @@ xgb_model = XGBRegressor(
 )
 
 # Train the XGBoost model
-xgb_model.fit(X_train, y_train)
+xgb_washed_model.fit(X_train, y_train)
 
 # Save the fitted model
-joblib.dump(xgb_model, 'xgb_model.pkl')
+joblib.dump(xgb_washed_model, 'xgb_washed_model.pkl')
+
+# Optionally, evaluate the model
+y_pred = xgb_washed_model.predict(X_test)
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print(f"XGBoost Model MSE: {mse}")
+print(f"XGBoost Model R2: {r2}")
 ```
 
 ## Usage
@@ -436,13 +438,13 @@ new_data = {
 new_data_df = pd.DataFrame(new_data)
 
 # Load the saved model
-xgb_model = joblib.load('xgb_model.pkl')
+xgb_washed_model = joblib.load('xgb_model.pkl')
 
 # Prepare the input data
 input_features = new_data_df  # Directly use the columns from the new data
 
 # Make predictions
-predictions = xgb_model.predict(input_features)
+predictions = xgb_washed_model.predict(input_features)
 
 # Add predictions to the DataFrame
 new_data_df['Predicted SCA Score'] = predictions
