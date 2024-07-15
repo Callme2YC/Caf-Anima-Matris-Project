@@ -41,7 +41,6 @@ The chatbot interacts with users to input relevant data and predict the SCA scor
 The chatbot script should include the following code:
 
 ```python
-Copy code
 import joblib
 import pandas as pd
 
