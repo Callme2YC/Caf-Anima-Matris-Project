@@ -423,7 +423,7 @@ Overall, these results demonstrate that the Gradient Boosting model is both accu
 
 ### 15. Fit the Model and Save it
 
-Fitting the best hyperparameters to the model and save it as the json format **('gb_honey_model.pkl')** for future predictions.
+Fitting the best hyperparameters to the model and save it as the pkl format **('gb_honey_model.pkl')** for future predictions.
 
 ```python
 import joblib
