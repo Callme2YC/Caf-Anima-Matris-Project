@@ -28,7 +28,7 @@ Ensure you have the necessary libraries installed. This includes standard data m
 You can install these libraries using `pip`. Open your terminal or command prompt and run the following commands:
 
 ```sh
-pip install pandas numpy matplotlib seaborn scikit-learn xgboost
+!pip install pandas numpy matplotlib seaborn scikit-learn xgboost
 ```
 
 ### 2. Loading the Model
