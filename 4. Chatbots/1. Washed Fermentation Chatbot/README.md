@@ -28,6 +28,7 @@ Before proceeding with the installation of libraries, ensure you have downloaded
 
 1. **Washed Fermentation Chatbot Notebook:** Download the Jupyter Notebook file named `Washed Fermentation Chatbot.ipynb`.
 2. **Gradient Boosting Model:** Download the model file named `gb_washed_model.pkl`.
+3. **Code Demo:** Download the demo video file named `z_Code Demo - Washed Fermentation Chatbot.mp4` and visit it before running the chatbot.
 
 Make sure to keep the filenames as specified above to avoid any issues when running the notebook. Do not rename the files to ensure compatibility with the code.
 
