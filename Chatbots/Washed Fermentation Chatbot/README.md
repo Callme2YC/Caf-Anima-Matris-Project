@@ -37,13 +37,17 @@ Make sure the trained model is saved before running the chatbot. The model shoul
 ## Using the Chatbot
 The chatbot interacts with users to input relevant data and predict the SCA score based on the trained model.
 
-### 1. Loading the Chatbot Script
+### 1. Loading the Necessary Libraries
 The chatbot script should include the following code:
 
 ```python
 import pandas as pd
 import joblib
+```
+### 2. Loading the Chatbot Script
+The chatbot script should include the following code:
 
+```python
 # Load the saved model
 gb_washed_model = joblib.load('gb_washed_model.pkl')
 
