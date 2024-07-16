@@ -24,12 +24,12 @@ The predictive model for washed fermentation aims to forecast the SCA score of c
 
 ### 1. Installing Necessary Libraries
 
-Ensure you have the necessary libraries installed. This includes standard data manipulation libraries like `pandas` and `numpy`, visualization libraries such as `matplotlib` and `seaborn`, and machine learning libraries like `scikit-learn` and `xgboost`.
+Ensure you have the necessary libraries installed. This includes standard data manipulation libraries like `pandas` and `numpy`, and machine learning libraries like `scikit-learn`.
 
 You can install these libraries using `pip`. Open your terminal or command prompt and run the following commands:
 
 ```sh
-!pip install pandas numpy matplotlib seaborn scikit-learn
+!pip install pandas numpy scikit-learn
 ```
 
 ### 2. Loading the Model
@@ -39,7 +39,6 @@ Make sure the trained model is saved before running the chatbot. The model shoul
 The chatbot interacts with users to input relevant data and predict the SCA score based on the trained model.
 
 ### 1. Loading the Necessary Libraries
-The chatbot script should include the following code:
 
 ```python
 import pandas as pd
