@@ -9,7 +9,8 @@ This document acts as a user guide for the chatbot designed to predict the Speci
 2. [Setup](#setup)
 3. [Using the Chatbot](#using-the-chatbot)
 4. [Model Features](#model-features)
-
+5. [Notifications](#notifications)
+   
 ---
 
 ## Introduction
@@ -22,12 +23,12 @@ The predictive model for honey fermentation aims to estimate the SCA score of co
 
 ### 1. Installing Necessary Libraries
 
-Ensure you have the necessary libraries installed. This includes standard data manipulation libraries like `pandas` and `numpy`, visualization libraries such as `matplotlib` and `seaborn`, and machine learning libraries like `scikit-learn` and `xgboost`.
+Ensure you have the necessary libraries installed. This includes standard data manipulation libraries like `pandas` and `numpy`,  and machine learning libraries like `scikit-learn`.
 
 You can install these libraries using `pip`. Open your terminal or command prompt and run the following commands:
 
 ```sh
-pip install pandas numpy matplotlib seaborn scikit-learn xgboost
+!pip install pandas numpy scikit-learn
 ```
 
 ### 2. Loading the Model
@@ -36,13 +37,17 @@ Make sure the trained model is saved before running the chatbot. The model shoul
 ## Using the Chatbot
 The chatbot interacts with users to input relevant data and predict the SCA score based on the trained model.
 
-### 1. Loading the Chatbot Script
-The chatbot script should include the following code:
+### 1. Loading the Necessary Libraries
 
 ```python
 import pandas as pd
 import joblib
+```
 
+### 2. Loading the Chatbot Script
+The chatbot script should include the following code:
+
+```python
 # Load the saved model
 gb_honey_model = joblib.load('gb_honey_model.pkl')
 
@@ -112,7 +117,7 @@ if __name__ == "__main__":
     chatbot()
 ```
 
-### 2. Running the Chatbot
+### 3. Running the Chatbot
 
 Run the script in your Python environment. The chatbot will prompt you to enter the necessary data, predict the SCA score, and ask if you want to input another set of data (A demonstration video will be provided in the folder to showcase how to use the chatbot).
 
@@ -140,5 +145,39 @@ The following variables are crucial inputs that help the model predict the SCA s
 - **Pre-fermentation for Honey_Yes:** Whether pre-fermentation is used.
 - **Pre-fermentation Details (Hour) for Honey:** The duration of pre-fermentation in hours (if used).
 
+## Notifications
+
+1. **Numerical Inputs:**
+   - Ensure that the numerical inputs fall within the following reasonable ranges:
+     - **Average Temp:** 18°C to 30°C
+     - **Average PH:** 4.0 to 6.0
+     - **Average Brix:** 15 to 25
+     - **Average Humidity:** 60% to 80%
+     - **Average Drying Temp:** 20°C to 35°C
+     - **Average Drying Humidity:** 50% to 70%
+     - **Fermentation Duration (hours):** 48 to 120 hours
+     - **Drying Fermentation Duration (hours):** 72 to 168 hours
+   - Inputs outside these ranges may affect the model's accuracy.
+
+2. **Weather Conditions:**
+   - The fermentation process generally lasts 3 to 5 days. Ensure the total number of days with specified weather conditions is reasonable within this timeframe.
+   - **Example:** If the fermentation lasts 4 days, you might specify 2 sunny days, 1 cloudy day, and 1 rainy day, while other weather conditions should be 0. Ensure the total number of days specified does not exceed 4.
+
+3. **Barrel Open in (Hour):**
+   - Honey fermentation is conducted in a sealed environment (i.e., in the barrel). However, it is occasionally necessary to open the barrel to mix the beans, particularly when the temperature is too high. Opening the barrel can help reduce the temperature. For this variable, a range of 0 to 3 hours has been assigned during the model development stage.
+
+4. **Barrel Close in (Hour):**
+   - This parameter should generally be the same as the fermentation duration hour. Ensure this rule is followed.
+
+5. **Type of Water Used:**
+   - There is no questino for the "Typy of Water User", since honey fermentation do not need water in this process.
+
+6. **Pre-fermentation for Honey:**
+   - If "Yes" is entered for "Whether pre-fermentation is used," the chatbot will prompt you to input the duration of the pre-fermentation in hours. If "No" is entered, this question will not be presented.
+
+7. **Additives for Fermentation:**
+   - Only one additive should be selected and used during the fermentation process.
+
+Please adhere to these guidelines to ensure accurate and reliable predictions from the model.
 
 
