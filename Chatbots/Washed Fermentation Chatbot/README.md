@@ -9,6 +9,7 @@ This document serves as a user guide for the chatbot developed to predict the Sp
 2. [Setup](#setup)
 3. [Using the Chatbot](#using-the-chatbot)
 4. [Model Features](#model-features)
+5. [Notifications](#notifications)
 
 
 ---
@@ -101,7 +102,7 @@ if __name__ == "__main__":
     chatbot()
 ```
 
-### 2. Running the Chatbot
+### 3. Running the Chatbot
 
 Run the script in your Python environment. The chatbot will prompt you to enter the necessary data, predict the SCA score, and ask if you want to input another set of data (A demonstration video will be provided in the folder to showcase how to use the chatbot).
 
@@ -124,4 +125,28 @@ The following variables are crucial inputs that help the model predict the SCA s
 - **Type of Water Used_Spring Water, Type of Water Used_Well Water:** The type of water used in the process.
 - **Additives for fermentation_Molasses, None, Sugar, Yeast:** The additives used during fermentation.
 
+## Notifications
 
+1. **Numerical Inputs:**
+   - Ensure that the numerical inputs fall within the following reasonable ranges:
+     - **Average Temp:** 18°C to 30°C
+     - **Average PH:** 4.0 to 6.0
+     - **Average Brix:** 15 to 25
+     - **Average Humidity:** 60% to 80%
+     - **Average Drying Temp:** 20°C to 35°C
+     - **Average Drying Humidity:** 50% to 70%
+     - **Fermentation Duration (hours):** 48 to 120 hours
+     - **Drying Fermentation Duration (hours):** 72 to 168 hours
+   - Inputs outside these ranges may affect the model's accuracy.
+
+2. **Weather Conditions:**
+   - The fermentation process generally lasts 3 to 5 days. Ensure the total number of days with specified weather conditions is reasonable within this timeframe.
+   - **Example:** If the fermentation lasts 4 days, you might specify 2 sunny days, 1 cloudy day, and 1 rainy day. The total should not exceed 4 days.
+
+3. **Type of Water Used:**
+   - Only one type of water should be selected for the entire fermentation process.
+
+4. **Additives for Fermentation:**
+   - Only one additive should be selected and used during the fermentation process.
+
+Please adhere to these guidelines to ensure accurate and reliable predictions from the model.
