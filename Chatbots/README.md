@@ -89,4 +89,4 @@ Both chatbots share the following features:
 - **Accurate Predictions:** Leverage machine learning models to provide accurate SCA score predictions based on input variables.
 - **Scalability:** Can predict SCA scores for new data, making them scalable solutions for continuous quality improvement.
 
-For detailed instructions on how to use each chatbot, please refer to the individual folder provided with each Jupyter Notebook. A demonstration video will be provided in these folders to showcase how to use the chatbots effectively.
+For detailed instructions on how to use each chatbot, please refer to the individual folder provided with each Jupyter Notebook. Meanwhile, a demonstration video will be provided in these two folders respectively to showcase how to use the chatbots effectively.
