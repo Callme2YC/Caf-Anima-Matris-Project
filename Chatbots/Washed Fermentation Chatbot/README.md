@@ -136,16 +136,17 @@ The following variables are crucial inputs that help the model predict the SCA s
      - **Average Drying Humidity:** 50% to 70%
      - **Fermentation Duration (hours):** 48 to 120 hours
      - **Drying Fermentation Duration (hours):** 72 to 168 hours
+   - Inputs should be numerical only, with no units required.
    - Inputs outside these ranges may affect the model's accuracy.
 
-2. **Weather Conditions:**
+3. **Weather Conditions:**
    - The fermentation process generally lasts 3 to 5 days. Ensure the total number of days with specified weather conditions is reasonable within this timeframe.
-   - **Example:** If the fermentation lasts 4 days, you might specify 2 sunny days, 1 cloudy day, and 1 rainy day. The total should not exceed 4 days.
+   - **Example:** If the fermentation lasts 4 days, you might specify 2 sunny days, 1 cloudy day, and 1 rainy day, while other weather conditions should be 0. Ensure the total number of days specified does not exceed 4.
 
-3. **Type of Water Used:**
+4. **Type of Water Used:**
    - Only one type of water should be selected for the entire fermentation process.
 
-4. **Additives for Fermentation:**
+5. **Additives for Fermentation:**
    - Only one additive should be selected and used during the fermentation process.
 
 Please adhere to these guidelines to ensure accurate and reliable predictions from the model.
