@@ -21,7 +21,8 @@ The two chatbots are designed to estimate the SCA score for coffee beans based o
 (YouTube Video link: https://www.youtube.com/watch?v=drbaFALFKDg).
 
 ## Code Demonstration Videos
-There are two code demonstration videos provided, one for each chatbot. These videos are located in their respective folders and are designed to assist users in understanding how to effectively use the chatbots.
+Two code demonstration videos have been provided, each corresponding to a different chatbot. These videos are located in their respective folders and are intended to guide users in effectively utilizing the chatbots. **For optimal understanding, please view the video for the washed fermentation chatbot first, followed by the honey fermentation chatbot.**
+
 
 ---
 
