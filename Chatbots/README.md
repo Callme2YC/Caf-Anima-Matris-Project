@@ -1,6 +1,6 @@
 # Overview of Coffee Fermentation Predictive Chatbots
 
-This document provides an overview of two chatbots developed to enhance the Specialty Coffee Association (SCA) score for coffee beans processed through two different fermentation methods: washed fermentation and honey (anaerobic) fermentation. Each chatbot utilizes a predictive model that leverages synthetic historical data and machine learning techniques to forecast optimal conditions for fermentation and drying, thus improving coffee quality.
+This document provides an overview of two chatbots developed to enhance the Specialty Coffee Association (SCA) score for coffee beans processed through two different fermentation methods: washed fermentation and honey (anaerobic) fermentation. Each chatbot utilizes a predictive model that leverages synthetic data and machine learning techniques to forecast optimal conditions for fermentation and drying, thus improving coffee quality.
 
 ---
 
@@ -15,7 +15,7 @@ This document provides an overview of two chatbots developed to enhance the Spec
 
 ## Introduction
 
-The two chatbots are designed to estimate the SCA score for coffee beans based on specific conditions during the fermentation and drying processes. The chatbots facilitate interaction with the predictive models, allowing users to input necessary data and receive accurate predictions. This guide provides a brief overview of the chatbots, highlighting their features and the reasons for developing separate chatbots for each fermentation method.
+The two chatbots are designed to estimate the SCA score for coffee beans based on specific conditions during the fermentation and drying processes. They facilitate interaction with predictive models, allowing users to input necessary data and receive accurate predictions. This guide provides an overview of the chatbots, highlighting their features and the rationale for developing separate chatbots for each fermentation method.
 
 ## Before running the chatbot, please make sure you have followed the YouTube Video to download Anaconda, and be able to use Jupyter Notebook on you laptop. 
 (YouTube Video link: https://www.youtube.com/watch?v=drbaFALFKDg).
