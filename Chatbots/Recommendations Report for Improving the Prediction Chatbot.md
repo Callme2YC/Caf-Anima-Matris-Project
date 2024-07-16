@@ -1,4 +1,4 @@
-# Recommendations for Improving the SCA Score Prediction Chatbot
+# Recommendations for Improving the Prediction Chatbot
 
 ## Table of Contents
 1. [Introduction](#introduction)
