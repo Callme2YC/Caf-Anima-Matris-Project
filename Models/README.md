@@ -18,7 +18,7 @@ The two models aim to predict the SCA score for coffee beans undergoing washed f
 
 Different fermentation methods can be impacted by different variables, which is why two separate models were developed. For honey fermentation, since the fermentation occurs in the barrel without water and air, factors such as the time the barrel is open and whether the beans have been pre-fermented are important. In contrast, for washed fermentation, the type of water used in the process can be crucial.
 
-### The Washed Fermentation Model was developed before the Honey Fermentation Model. Therefore, it is recommended to review the files for the Washed Fermentation Model first to follow the logical sequence of development."
+### The Washed Fermentation Model was developed before the Honey Fermentation Model. Therefore, it is recommended to review the files for the Washed Fermentation Model first to follow the logical sequence of development.
 
 ---
 
