@@ -1,4 +1,4 @@
-# Predictive Models for Coffee Fermentation - Overview
+# Overview of Predictive Models for Coffee Fermentation
 
 This document provides a brief summary of two predictive models developed to enhance the Specialty Coffee Association (SCA) score for coffee beans processed through two different fermentation methods: washed fermentation and honey (anaerobic) fermentation. Each model uses historical data and machine learning techniques to forecast optimal conditions for fermentation and drying, thus improving coffee quality.
 
