@@ -21,7 +21,18 @@ The predictive model for honey fermentation aims to estimate the SCA score of co
 
 ## Setup
 
-### 1. Installing Necessary Libraries
+### 1. Download Necessary Files
+
+Before proceeding with the installation of libraries, ensure you have downloaded the following necessary files:
+
+1. **Washed Fermentation Chatbot Notebook:** Download the Jupyter Notebook file named `Honey Fermentation Chatbot.ipynb`.
+2. **Gradient Boosting Model:** Download the model file named `gb_honey_model.pkl`.
+3. **Code Demo:** Download the demo video file named `z_Code Demo - Honey Fermentation Chatbot.mp4` and visit it before running the chatbot.
+
+Make sure to keep the filenames as specified above to avoid any issues when running the notebook. Do not rename the files to ensure compatibility with the code.
+
+
+### 2. Installing Necessary Libraries
 
 Ensure you have the necessary libraries installed. This includes standard data manipulation libraries like `pandas` and `numpy`,  and machine learning libraries like `scikit-learn`.
 
