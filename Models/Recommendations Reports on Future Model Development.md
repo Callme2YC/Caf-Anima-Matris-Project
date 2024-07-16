@@ -110,9 +110,6 @@ The Gradient Boosting model achieved an MSE of approximately 0.368 and an R² sc
 **Usage:**
 The trained Gradient Boosting model can be used to predict SCA scores for new batches of coffee beans. The input data should be preprocessed in the same way as the training data, ensuring consistency in feature scaling and encoding.
 
-**Example:**
-The model can predict SCA scores for new data points by loading the trained model and applying it to the preprocessed input data. The predictions are added to the input data frame, providing an easy way to interpret the results.
-
 ## Conclusion
 
 By following these detailed recommendations, future developers can build more effective and accurate predictive models for the washed fermentation process. Integrating real data with robust data handling and model validation techniques will enhance the reliability and usefulness of the model. Continuous improvement and adaptation to new data will ensure the model remains relevant and valuable for optimizing the quality of coffee beans.
