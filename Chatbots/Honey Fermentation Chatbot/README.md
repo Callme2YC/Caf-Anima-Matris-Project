@@ -157,6 +157,7 @@ The following variables are crucial inputs that help the model predict the SCA s
      - **Average Drying Humidity:** 50% to 70%
      - **Fermentation Duration (hours):** 48 to 120 hours
      - **Drying Fermentation Duration (hours):** 72 to 168 hours
+   - Inputs should be numerical only, with no units required.
    - Inputs outside these ranges may affect the model's accuracy.
 
 2. **Weather Conditions:**
