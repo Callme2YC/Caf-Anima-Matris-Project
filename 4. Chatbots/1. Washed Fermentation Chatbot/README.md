@@ -22,7 +22,17 @@ The predictive model for washed fermentation aims to forecast the SCA score of c
 
 ## Setup
 
-### 1. Installing Necessary Libraries
+### 1. Download Necessary Files
+
+Before proceeding with the installation of libraries, ensure you have downloaded the following necessary files:
+
+1. **Washed Fermentation Chatbot Notebook:** Download the Jupyter Notebook file named `Washed Fermentation Chatbot.ipynb`.
+2. **Gradient Boosting Model:** Download the model file named `gb_washed_model.pkl`.
+
+Make sure to keep the filenames as specified above to avoid any issues when running the notebook. Do not rename the files to ensure compatibility with the code.
+
+
+### 2. Installing Necessary Libraries
 
 Ensure you have the necessary libraries installed. This includes standard data manipulation libraries like `pandas` and `numpy`, and machine learning libraries like `scikit-learn`.
 
@@ -32,7 +42,7 @@ You can install these libraries using `pip`. Open your terminal or command promp
 !pip install pandas numpy scikit-learn
 ```
 
-### 2. Loading the Model
+### 3. Loading the Model
 Make sure the trained model is saved before running the chatbot. The model should be saved as **gb_washed_model.pkl**.
 
 ## Using the Chatbot
