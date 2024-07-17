@@ -1,6 +1,6 @@
 # Washed Fermentation Chatbot - User Guide
 
-This document serves as a user guide for the chatbot developed to predict the Specialty Coffee Association (SCA) score for the washed fermentation process. This chatbot uses a predictive model to forecast the SCA score based on various input parameters related to the fermentation and drying processes. This guide provides step-by-step instructions on how to interact with the chatbot and input the necessary data to receive accurate predictions.
+This document serves as a user guide for the chatbot designed to predict the Specialty Coffee Association (SCA) score for the washed fermentation process. Using a predictive model, the chatbot forecasts the SCA score based on various input parameters related to the fermentation and drying processes. This guide provides step-by-step instructions on how to interact with the chatbot, input the necessary data, and receive accurate predictions.
 
 ---
 
