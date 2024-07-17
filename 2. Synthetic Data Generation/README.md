@@ -12,9 +12,6 @@
 
 This guide provides a detailed overview for future developers on how the code for generating synthetic data for the Café Anima Matris project works. This document demonstrates how data was generated based on the data collection template developed for clients. The columns built are intended to prepare for current and future model training.
 
-The project aims to enhance the Specialty Coffee Association (SCA) score by optimizing fermentation and drying processes using data analytics.
-
-
 ## Setup
 
 ### Installing Necessary Packages
