@@ -1,6 +1,6 @@
 # Honey Fermentation Chatbot - User Guide
 
-This document acts as a user guide for the chatbot designed to predict the Specialty Coffee Association (SCA) score for the honey fermentation process. Utilizing a predictive model, this chatbot estimates the SCA score based on several input parameters associated with the fermentation and drying stages. This guide offers step-by-step instructions on how to interact with the chatbot and enter the required data to obtain precise predictions.
+This document serves as a user guide for the chatbot created to predict the Specialty Coffee Association (SCA) score for the honey fermentation process. The chatbot leverages a predictive model to estimate the SCA score based on various input parameters related to the fermentation and drying stages. This guide provides detailed instructions on how to interact with the chatbot and input the necessary data to receive accurate predictions.
 
 ---
 
