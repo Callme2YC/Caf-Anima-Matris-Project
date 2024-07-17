@@ -24,7 +24,7 @@ Different fermentation methods can be impacted by different variables, which is 
 
 ## Washed Fermentation Model
 
-### NOTE: A video code demo for Washed Fermentation Model is available under the "Predivtive Model of Washed Fermentation".
+### NOTE: A video code demo for Washed Fermentation Model is available under the "Predictive Model of Washed Fermentation".
 - The purpose of this code demo is to provide a clear and detailed understanding of how to use the model to enhance the quality of coffee beans through optimized fermentation processes. (The predictive model for Honey Fermentation follows a similar process, so only one detailed code demo for model development is provided.)
 
 - The video thoroughly walks through the entire notebook, demonstrating the development and evaluation of the predictive model for coffee fermentation, including data preprocessing, exploratory data analysis, model training, hyperparameter tuning, and cross validations of the model.
