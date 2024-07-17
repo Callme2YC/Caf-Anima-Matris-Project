@@ -182,7 +182,7 @@ The following variables are crucial inputs that help the model predict the SCA s
    - This parameter should generally be the same as the fermentation duration hour. Ensure this rule is followed.
 
 5. **Type of Water Used:**
-   - There is no questino for the "Typy of Water User", since honey fermentation do not need water in this process.
+   - There is no question for the "Type of Water User", since honey fermentation do not need water in this process.
 
 6. **Pre-fermentation for Honey:**
    - If "Yes" is entered for "Whether pre-fermentation is used," the chatbot will prompt you to input the duration of the pre-fermentation in hours. If "No" is entered, this question will not be presented.
