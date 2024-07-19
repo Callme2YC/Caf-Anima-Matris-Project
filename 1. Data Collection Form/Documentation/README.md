@@ -22,8 +22,10 @@ This main folder contains all the necessary documentation and guides for the dat
   - Guide and Explanation Document for Backend Table Configuration.pdf
   - Guide and Explanation Document for Form Configuration.pdf
 
+### 3. User Guide Videos
+- **Purpose:** To provide video explanations and demonstrations for using the data collection forms.
+- **Link:** [Data Collection Form Video Explanations and Demos](https://mcgill-my.sharepoint.com/:f:/r/personal/dhevin_desilva_mail_mcgill_ca/Documents/Community%20Project/1.%20Data%20Collection%20Form/Data%20Collection%20Form%20Video%20Explanations%20and%20Demos?csf=1&web=1&e=MLbadC)
+
 ## Notes
 - Ensure you have the necessary permissions to access the files and resources within these subfolders.
 - For secure information such as login credentials, please refer to the "Admin Guides" section.
-
-
