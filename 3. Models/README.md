@@ -20,6 +20,12 @@ Different fermentation methods can be impacted by different variables, which is 
 
 ### The Washed Fermentation Model was developed before the Honey Fermentation Model. Therefore, it is recommended to review the files for the Washed Fermentation Model first to follow the logical sequence of development.
 
+### Video Demonstration
+
+You can watch the code demo video for the predictive model of washed fermentation by clicking the link below:
+
+[Code Demo of Predictive Model of Washed Fermentation](https://mcgill-my.sharepoint.com/:v:/r/personal/dhevin_desilva_mail_mcgill_ca/Documents/Community%20Project/2.%20Code%20Demo%20Video%20for%20Models/Code%20Deom%20of%20Predictive%20Model%20of%20Washed%20Fermentation.mp4?csf=1&web=1&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=ZVE8NX)
+
 ---
 
 ## Washed Fermentation Model
