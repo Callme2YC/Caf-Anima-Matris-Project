@@ -23,6 +23,13 @@ The two chatbots are designed to estimate the SCA score for coffee beans based o
 ## Code Demonstration Videos
 Two code demonstration videos have been provided, each corresponding to a different chatbot. These videos are located in their respective folders and are intended to guide users in effectively utilizing the chatbots. **For optimal understanding, please view the video for the washed fermentation chatbot first, followed by the honey fermentation chatbot.**
 
+Alternatively, you can watch the code demo video for the washed fermentation chatbot by clicking the link below:
+
+[Code Demo of Washed Fermentation Chatbot](https://mcgill-my.sharepoint.com/:v:/r/personal/dhevin_desilva_mail_mcgill_ca/Documents/Community%20Project/3.%20Code%20Demo%20Videos%20for%20Chatbots/1.%20Code%20Demo%20-%20Washed%20Fermentation%20Chatbot.mp4?csf=1&web=1&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=HYm5al)
+
+For the code demo video for the honey fermentation chatbot by clicking the link below:
+
+[Code Demo of Honey Fermentation Chatbot](https://mcgill-my.sharepoint.com/:v:/r/personal/dhevin_desilva_mail_mcgill_ca/Documents/Community%20Project/3.%20Code%20Demo%20Videos%20for%20Chatbots/2.%20Code%20Demo%20-%20Honey%20Fermentation%20Chatbot.mp4?csf=1&web=1&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=rX6HV4)
 
 ---
 
