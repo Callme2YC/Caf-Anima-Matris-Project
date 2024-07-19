@@ -52,7 +52,7 @@ Contains the predictive models developed for both washed and honey fermentation 
 Contains the chatbots developed to interact with the predictive models, allowing users to input necessary data and receive SCA score predictions.
 
 ## Web Page
-We have also developed a comprehensive web page using Notion to provide an overview of the project, including resources and updates. [Add Notion link here]
+We have also developed a comprehensive web page using Notion to provide an overview of the project, including all the resources, user guids and videos. [Add Notion link here]
 
 ## Conclusion
 This project provides a systematic approach to enhancing coffee quality through data-driven fermentation analysis. By following these guidelines and using the developed tools, stakeholders can ensure consistent and better coffee production, ultimately improving the SCA score.
