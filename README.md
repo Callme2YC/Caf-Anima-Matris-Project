@@ -4,9 +4,11 @@
 This project aims to enhance the Specialty Coffee Association (SCA) score of coffee by optimizing the fermentation and drying processes through data analytics. Using machine learning techniques, we developed predictive models to forecast optimal conditions for these processes, providing actionable insights for consistently producing high-quality coffee beans.
 
 ## Web Page
-We have also developed a comprehensive web page using Notion to provide an overview of the project, including all the resources, user guids and videos. 
 
-Website Page link: https://juniper-swim-1f3.notion.site/Home-Page-06ec698261c94136ba17e730ee3e0b2e 
+We have developed a comprehensive web page using Notion to provide an in-depth overview of the project. This page includes all resources, user guides, and demonstration videos to facilitate understanding and usage.
+
+**Website Link:** [Home Page](https://juniper-swim-1f3.notion.site/Home-Page-06ec698261c94136ba17e730ee3e0b2e)
+
 
 ## Table of Contents
 1. [Introduction](#introduction)
