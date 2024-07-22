@@ -3,12 +3,16 @@
 ## Overview
 This project aims to enhance the Specialty Coffee Association (SCA) score of coffee by optimizing the fermentation and drying processes through data analytics. Using machine learning techniques, we developed predictive models to forecast optimal conditions for these processes, providing actionable insights for consistently producing high-quality coffee beans.
 
+## Web Page
+We have also developed a comprehensive web page using Notion to provide an overview of the project, including all the resources, user guids and videos. 
+
+Website Page link: https://juniper-swim-1f3.notion.site/Home-Page-06ec698261c94136ba17e730ee3e0b2e 
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Project Impact and Solutions](#project-impact-and-solutions)
 3. [Folders and Files](#folders-and-files)
-4. [Web Page](#web-page)
-5. [Conclusion](#conclusion)
+4. [Conclusion](#conclusion)
 
 ## Introduction
 The primary objective of this project is to optimize the coffee fermentation and drying processes using data analytics to improve the SCA score. This includes designing data collection protocols, developing machine learning models, and creating user-friendly interfaces for stakeholders.
@@ -18,7 +22,7 @@ The primary objective of this project is to optimize the coffee fermentation and
 ### Addressing Pain Points from the SoW
 
 1. **Data Collection and Management:**
-   - **Solution:** Designed an Airtable-based database with data collection templates, forms, and dashboards to streamline data entry and management.
+   - **Solution:** Designed an Airtable-based database with data collection templates, forms, and dashboards to streamline data entry and management and provided login credentials and links to access Airtable and Notion.
    - **Impact:** Simplifies data collection for coffee farmers and administrators, ensuring accuracy and consistency in recorded data.
 
 2. **Predictive Modeling:**
@@ -51,10 +55,6 @@ Contains the predictive models developed for both washed and honey fermentation 
 ### 4. Chatbots
 Contains the chatbots developed to interact with the predictive models, allowing users to input necessary data and receive SCA score predictions.
 
-## Web Page
-We have also developed a comprehensive web page using Notion to provide an overview of the project, including all the resources, user guids and videos. 
-
-Website Page link: https://juniper-swim-1f3.notion.site/Home-Page-06ec698261c94136ba17e730ee3e0b2e 
 
 ## Conclusion
 This project provides a systematic approach to enhancing coffee quality through data-driven fermentation analysis. By following these guidelines and using the developed tools, stakeholders can ensure consistent and better coffee production, ultimately improving the SCA score.
