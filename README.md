@@ -22,7 +22,8 @@ The primary objective of this project is to optimize the coffee fermentation and
 ### Addressing Pain Points from the SoW
 
 1. **Data Collection and Management:**
-   - **Solution:** Designed an Airtable-based database with data collection templates, forms, and dashboards to streamline data entry and management and provided login credentials and links to access Airtable and Notion.
+   - **Solution:** Designed an Airtable-based database with data collection templates, forms, and dashboards to streamline data entry and management.
+   - **Notes:** provided login credentials and links to access Airtable and Notion.
    - **Impact:** Simplifies data collection for coffee farmers and administrators, ensuring accuracy and consistency in recorded data.
 
 2. **Predictive Modeling:**
