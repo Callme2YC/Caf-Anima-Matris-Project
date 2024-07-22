@@ -7,7 +7,7 @@ This project aims to enhance the Specialty Coffee Association (SCA) score of cof
 1. [Introduction](#introduction)
 2. [Project Impact and Solutions](#project-impact-and-solutions)
 3. [Folders and Files](#folders-and-files)
-4. [Web Page](#web-page) XXXX
+4. [Web Page](#web-page)
 5. [Conclusion](#conclusion)
 
 ## Introduction
@@ -52,7 +52,9 @@ Contains the predictive models developed for both washed and honey fermentation 
 Contains the chatbots developed to interact with the predictive models, allowing users to input necessary data and receive SCA score predictions.
 
 ## Web Page
-We have also developed a comprehensive web page using Notion to provide an overview of the project, including all the resources, user guids and videos. [Add Notion link here]
+We have also developed a comprehensive web page using Notion to provide an overview of the project, including all the resources, user guids and videos. 
+
+Website Page link: https://juniper-swim-1f3.notion.site/Home-Page-06ec698261c94136ba17e730ee3e0b2e 
 
 ## Conclusion
 This project provides a systematic approach to enhancing coffee quality through data-driven fermentation analysis. By following these guidelines and using the developed tools, stakeholders can ensure consistent and better coffee production, ultimately improving the SCA score.
